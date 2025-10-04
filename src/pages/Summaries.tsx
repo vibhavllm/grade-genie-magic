@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Header } from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,11 +30,8 @@ const Summaries = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      
-      <main className="container mx-auto px-6 py-12">
-        <div className="max-w-5xl mx-auto space-y-8">
+    <div className="space-y-8">
+      <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center space-y-2">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-rose-500 to-orange-500 bg-clip-text text-transparent">
               Topic Summarization & Highlights
@@ -119,8 +115,7 @@ const Summaries = () => {
               </div>
             </Card>
           )}
-        </div>
-      </main>
+      </div>
     </div>
   );
 };

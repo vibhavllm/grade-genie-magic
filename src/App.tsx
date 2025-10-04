@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { DashboardLayout } from "./components/DashboardLayout";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LessonPlans from "./pages/LessonPlans";
@@ -22,19 +23,21 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/lesson-plans" element={<LessonPlans />} />
-          <Route path="/question-papers" element={<QuestionPapers />} />
-          <Route path="/assignments" element={<Assignments />} />
-          <Route path="/summaries" element={<Summaries />} />
-          <Route path="/rubrics" element={<Rubrics />} />
-          <Route path="/validation" element={<Validation />} />
-          <Route path="/checks" element={<Checks />} />
-          <Route path="/analytics" element={<Analytics />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <DashboardLayout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/lesson-plans" element={<LessonPlans />} />
+            <Route path="/question-papers" element={<QuestionPapers />} />
+            <Route path="/assignments" element={<Assignments />} />
+            <Route path="/summaries" element={<Summaries />} />
+            <Route path="/rubrics" element={<Rubrics />} />
+            <Route path="/validation" element={<Validation />} />
+            <Route path="/checks" element={<Checks />} />
+            <Route path="/analytics" element={<Analytics />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </DashboardLayout>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
