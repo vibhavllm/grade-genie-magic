@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { LoadingState } from "@/components/LoadingState";
 import { dummyValidationReport } from "@/lib/dummyData";
-import { Upload, Sparkles, CheckCircle2, AlertCircle } from "lucide-react";
+import { sampleFiles } from "@/lib/sampleData";
+import { Upload, Sparkles, CheckCircle2, AlertCircle, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 const Validation = () => {
@@ -41,15 +42,22 @@ const Validation = () => {
           </div>
 
           <Card className="p-6 shadow-card space-y-6">
-            <div className="space-y-2">
-              <Label>Upload Question Paper for Validation</Label>
-              <div className="border-2 border-dashed border-border rounded-lg p-12 text-center hover:border-primary transition-smooth cursor-pointer">
-                <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                <p className="font-medium mb-2">Drop your question paper here</p>
-                <p className="text-sm text-muted-foreground">or click to browse</p>
-                <p className="text-xs text-muted-foreground mt-2">PDF, DOC up to 20MB</p>
+              <div className="space-y-2">
+                <Label>Upload Question Paper for Validation</Label>
+                <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-smooth">
+                  <Upload className="h-10 w-10 mx-auto mb-3 text-muted-foreground" />
+                  <p className="font-medium mb-2">Drop your question paper here</p>
+                  <p className="text-sm text-muted-foreground mb-3">or click to browse • PDF, DOC up to 20MB</p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => toast.success(`Using sample file: ${sampleFiles.questionPaper}`)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    Use Sample Question Paper
+                  </Button>
+                </div>
               </div>
-            </div>
 
             <Button onClick={handleValidate} variant="hero" className="w-full" size="lg">
               <Sparkles className="mr-2 h-4 w-4" />

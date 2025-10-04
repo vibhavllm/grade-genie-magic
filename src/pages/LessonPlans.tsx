@@ -6,8 +6,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { LoadingState } from "@/components/LoadingState";
 import { dummyLessonPlan } from "@/lib/dummyData";
-import { Upload, Sparkles } from "lucide-react";
+import { sampleData, sampleFiles } from "@/lib/sampleData";
+import { Upload, Sparkles, Zap } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const LessonPlans = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +25,16 @@ const LessonPlans = () => {
     grade: "",
     duration: ""
   });
+
+  const loadSample = (index: number) => {
+    const sample = sampleData.lessonPlans[index];
+    setFormData({
+      topic: sample.topic,
+      grade: sample.grade,
+      duration: sample.duration
+    });
+    toast.success("Sample data loaded!");
+  };
 
   const handleGenerate = () => {
     if (!formData.topic || !formData.grade || !formData.duration) {
@@ -58,6 +76,23 @@ const LessonPlans = () => {
           </div>
 
           <Card className="p-6 shadow-card space-y-6">
+            <div className="flex items-center justify-between mb-4">
+              <Label className="text-base font-semibold">Quick Demo Data</Label>
+              <div className="flex gap-2">
+                {sampleData.lessonPlans.map((sample, idx) => (
+                  <Button
+                    key={idx}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => loadSample(idx)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    {sample.subject}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -71,31 +106,49 @@ const LessonPlans = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="grade">Grade Level</Label>
-                  <Input
-                    id="grade"
-                    placeholder="e.g., Grade 8"
-                    value={formData.grade}
-                    onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                  />
+                  <Select value={formData.grade} onValueChange={(value) => setFormData({ ...formData, grade: value })}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select grade" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Grade 8">Grade 8</SelectItem>
+                      <SelectItem value="Grade 9">Grade 9</SelectItem>
+                      <SelectItem value="Grade 10">Grade 10</SelectItem>
+                      <SelectItem value="Grade 11">Grade 11</SelectItem>
+                      <SelectItem value="Grade 12">Grade 12</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="duration">Duration</Label>
-                <Input
-                  id="duration"
-                  placeholder="e.g., 45 minutes"
-                  value={formData.duration}
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                />
+                <Select value={formData.duration} onValueChange={(value) => setFormData({ ...formData, duration: value })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select duration" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="30 minutes">30 minutes</SelectItem>
+                    <SelectItem value="45 minutes">45 minutes</SelectItem>
+                    <SelectItem value="60 minutes">60 minutes</SelectItem>
+                    <SelectItem value="90 minutes">90 minutes</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="syllabus">Upload Syllabus (Optional)</Label>
-                <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-smooth cursor-pointer">
-                  <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">Click to upload or drag and drop</p>
-                  <p className="text-xs text-muted-foreground mt-1">PDF, DOC up to 10MB</p>
+                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-smooth">
+                  <Upload className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground mb-2">Click to upload or drag and drop</p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => toast.success(`Using sample file: ${sampleFiles.syllabus}`)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    Use Sample Syllabus
+                  </Button>
                 </div>
               </div>
             </div>

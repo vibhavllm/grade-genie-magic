@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LoadingState } from "@/components/LoadingState";
 import { dummyRubric } from "@/lib/dummyData";
-import { Sparkles } from "lucide-react";
+import { sampleData } from "@/lib/sampleData";
+import { Sparkles, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 const Rubrics = () => {
@@ -16,6 +17,16 @@ const Rubrics = () => {
     questionTitle: "",
     totalMarks: ""
   });
+
+  const loadSample = (index: number) => {
+    const sample = sampleData.questions[index];
+    const marks = sample.match(/\((\d+) marks\)/)?.[1] || "15";
+    setFormData({
+      questionTitle: sample,
+      totalMarks: marks
+    });
+    toast.success("Sample question loaded!");
+  };
 
   const handleGenerate = () => {
     if (!formData.questionTitle || !formData.totalMarks) {
@@ -50,27 +61,57 @@ const Rubrics = () => {
           </div>
 
           <Card className="p-6 shadow-card space-y-6">
+            <div className="flex items-center justify-between mb-4">
+              <Label className="text-base font-semibold">Quick Demo Questions</Label>
+              <div className="flex gap-2">
+                {sampleData.questions.map((_, idx) => (
+                  <Button
+                    key={idx}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => loadSample(idx)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    Sample {idx + 1}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="question">Question/Task Title</Label>
-                <Textarea
-                  id="question"
-                  placeholder="e.g., Essay: Discuss the impact of climate change..."
-                  value={formData.questionTitle}
-                  onChange={(e) => setFormData({ ...formData, questionTitle: e.target.value })}
-                  rows={3}
-                />
+                <Select 
+                  value={formData.questionTitle} 
+                  onValueChange={(value) => {
+                    const marks = value.match(/\((\d+) marks\)/)?.[1] || "15";
+                    setFormData({ questionTitle: value, totalMarks: marks });
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a question or type your own" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {sampleData.questions.map((q, idx) => (
+                      <SelectItem key={idx} value={q}>{q}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="marks">Total Marks</Label>
-                <Input
-                  id="marks"
-                  type="number"
-                  placeholder="e.g., 15"
-                  value={formData.totalMarks}
-                  onChange={(e) => setFormData({ ...formData, totalMarks: e.target.value })}
-                />
+                <Select value={formData.totalMarks} onValueChange={(value) => setFormData({ ...formData, totalMarks: value })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select marks" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="5">5 marks</SelectItem>
+                    <SelectItem value="10">10 marks</SelectItem>
+                    <SelectItem value="15">15 marks</SelectItem>
+                    <SelectItem value="20">20 marks</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 

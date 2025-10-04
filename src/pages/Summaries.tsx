@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LoadingState } from "@/components/LoadingState";
 import { dummyTopicSummary } from "@/lib/dummyData";
-import { Sparkles } from "lucide-react";
+import { sampleData } from "@/lib/sampleData";
+import { Sparkles, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 const Summaries = () => {
@@ -13,9 +14,14 @@ const Summaries = () => {
   const [summary, setSummary] = useState<typeof dummyTopicSummary | null>(null);
   const [topic, setTopic] = useState("");
 
+  const loadSample = (sampleTopic: string) => {
+    setTopic(sampleTopic);
+    toast.success("Sample topic loaded!");
+  };
+
   const handleGenerate = () => {
     if (!topic) {
-      toast.error("Please enter a topic");
+      toast.error("Please select a topic");
       return;
     }
 
@@ -42,14 +48,35 @@ const Summaries = () => {
           </div>
 
           <Card className="p-6 shadow-card space-y-6">
+            <div className="flex items-center justify-between mb-4">
+              <Label className="text-base font-semibold">Quick Demo Topics</Label>
+              <div className="flex flex-wrap gap-2">
+                {sampleData.topics.slice(0, 3).map((sampleTopic, idx) => (
+                  <Button
+                    key={idx}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => loadSample(sampleTopic)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    {sampleTopic}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <Label htmlFor="topic">Enter Topic or Chapter</Label>
-              <Input
-                id="topic"
-                placeholder="e.g., Newton's Laws of Motion"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-              />
+              <Label htmlFor="topic">Select or Enter Topic</Label>
+              <Select value={topic} onValueChange={setTopic}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Choose a topic" />
+                </SelectTrigger>
+                <SelectContent>
+                  {sampleData.topics.map((t, idx) => (
+                    <SelectItem key={idx} value={t}>{t}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <Button onClick={handleGenerate} variant="hero" className="w-full" size="lg">

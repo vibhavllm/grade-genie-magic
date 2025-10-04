@@ -6,7 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LoadingState } from "@/components/LoadingState";
 import { dummyQuestionPaper } from "@/lib/dummyData";
-import { Sparkles } from "lucide-react";
+import { sampleData } from "@/lib/sampleData";
+import { Sparkles, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 const QuestionPapers = () => {
@@ -18,6 +19,12 @@ const QuestionPapers = () => {
     totalMarks: "",
     duration: ""
   });
+
+  const loadSample = (index: number) => {
+    const sample = sampleData.questionPapers[index];
+    setFormData(sample);
+    toast.success("Sample data loaded!");
+  };
 
   const handleGenerate = () => {
     if (!formData.subject || !formData.grade || !formData.totalMarks || !formData.duration) {
@@ -54,6 +61,23 @@ const QuestionPapers = () => {
           </div>
 
           <Card className="p-6 shadow-card space-y-6">
+            <div className="flex items-center justify-between mb-4">
+              <Label className="text-base font-semibold">Quick Demo Data</Label>
+              <div className="flex gap-2">
+                {sampleData.questionPapers.map((sample, idx) => (
+                  <Button
+                    key={idx}
+                    variant="outline"
+                    size="sm"
+                    onClick={() => loadSample(idx)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    {sample.subject}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="subject">Subject</Label>

@@ -4,13 +4,19 @@ import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { LoadingState } from "@/components/LoadingState";
-import { Upload, Sparkles, Shield, AlertTriangle, CheckCircle } from "lucide-react";
+import { sampleFiles } from "@/lib/sampleData";
+import { Upload, Sparkles, Shield, AlertTriangle, CheckCircle, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 const Checks = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<any>(null);
   const [inputText, setInputText] = useState("");
+
+  const loadSample = () => {
+    setInputText("Sample Question 1: Explain the process of photosynthesis in detail...\n\nSample Question 2: Describe the water cycle...\n\nSample Question 5: Explain the process of photosynthesis including the role of chlorophyll...");
+    toast.success("Sample content loaded!");
+  };
 
   const handleCheck = () => {
     if (!inputText.trim()) {
@@ -73,7 +79,13 @@ const Checks = () => {
           <Card className="p-6 shadow-card space-y-6">
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="content">Paste Question Paper Content</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="content">Paste Question Paper Content</Label>
+                  <Button variant="outline" size="sm" onClick={loadSample}>
+                    <Zap className="h-3 w-3 mr-1" />
+                    Load Sample
+                  </Button>
+                </div>
                 <Textarea
                   id="content"
                   placeholder="Paste your questions or assessment content here..."
@@ -85,10 +97,17 @@ const Checks = () => {
 
               <div className="space-y-2">
                 <Label>Or Upload Document</Label>
-                <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary transition-smooth cursor-pointer">
-                  <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">Click to upload or drag and drop</p>
-                  <p className="text-xs text-muted-foreground mt-1">PDF, DOC, TXT up to 15MB</p>
+                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary transition-smooth">
+                  <Upload className="h-6 w-6 mx-auto mb-2 text-muted-foreground" />
+                  <p className="text-sm text-muted-foreground mb-2">Click to upload • PDF, DOC, TXT up to 15MB</p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => toast.success(`Using sample file: ${sampleFiles.document}`)}
+                  >
+                    <Zap className="h-3 w-3 mr-1" />
+                    Use Sample Document
+                  </Button>
                 </div>
               </div>
             </div>

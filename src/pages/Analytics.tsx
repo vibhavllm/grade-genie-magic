@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LoadingState } from "@/components/LoadingState";
 import { dummySubmissionAnalytics } from "@/lib/dummyData";
-import { Sparkles, TrendingUp, Users, Clock, Star } from "lucide-react";
+import { Sparkles, TrendingUp, Users, Clock, Star, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 const Analytics = () => {
@@ -43,7 +43,20 @@ const Analytics = () => {
 
           <Card className="p-6 shadow-card space-y-6">
             <div className="space-y-2">
-              <Label>Select Assignment</Label>
+              <div className="flex items-center justify-between mb-2">
+                <Label>Select Assignment</Label>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => {
+                    setSelectedAssignment("algebra");
+                    toast.success("Sample assignment selected!");
+                  }}
+                >
+                  <Zap className="h-3 w-3 mr-1" />
+                  Load Sample
+                </Button>
+              </div>
               <Select value={selectedAssignment} onValueChange={setSelectedAssignment}>
                 <SelectTrigger>
                   <SelectValue placeholder="Choose an assignment" />
