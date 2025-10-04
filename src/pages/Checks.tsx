@@ -61,7 +61,7 @@ const Checks = () => {
       });
       setIsLoading(false);
       toast.success("Analysis complete!");
-    }, 3000);
+    }, 490);
   };
 
   return (

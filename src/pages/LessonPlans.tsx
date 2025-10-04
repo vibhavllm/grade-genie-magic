@@ -54,7 +54,7 @@ const LessonPlans = () => {
       });
       setIsLoading(false);
       toast.success("Lesson plan generated successfully!");
-    }, 2500);
+    }, 400);
   };
 
   const handleEdit = (field: string, value: string) => {

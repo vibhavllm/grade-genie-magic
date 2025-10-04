@@ -45,7 +45,7 @@ const Rubrics = () => {
       });
       setIsLoading(false);
       toast.success("Rubric generated!");
-    }, 2400);
+    }, 420);
   };
 
   return (

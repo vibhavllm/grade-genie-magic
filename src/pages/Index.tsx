@@ -135,22 +135,6 @@ const Index = () => {
         </Card>
       </div>
 
-      <Card className="p-8 shadow-card bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-2xl font-bold mb-2">Explore AI Features</h3>
-            <p className="text-muted-foreground mb-4">
-              Press <kbd className="px-2 py-1 bg-card rounded border mx-1">⌘</kbd>
-              <kbd className="px-2 py-1 bg-card rounded border">K</kbd> to quickly navigate between features
-            </p>
-          </div>
-          <div className="hidden md:block">
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-primary to-primary-glow">
-              <Sparkles className="h-12 w-12 text-primary-foreground" />
-            </div>
-          </div>
-        </div>
-      </Card>
     </div>
   );
 };

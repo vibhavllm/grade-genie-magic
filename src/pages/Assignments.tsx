@@ -60,7 +60,7 @@ const Assignments = () => {
       });
       setIsLoading(false);
       toast.success("Class assignment generated!");
-    }, 2800);
+    }, 460);
   };
 
   const mockStudents = [

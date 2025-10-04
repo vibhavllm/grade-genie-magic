@@ -45,7 +45,7 @@ const QuestionPapers = () => {
       });
       setIsLoading(false);
       toast.success("Question paper generated successfully!");
-    }, 3000);
+    }, 440);
   };
 
   return (

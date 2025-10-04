@@ -20,7 +20,7 @@ const Validation = () => {
       setReport(dummyValidationReport);
       setIsLoading(false);
       toast.success("Validation complete!");
-    }, 3500);
+    }, 500);
   };
 
   const getScoreColor = (score: number) => {

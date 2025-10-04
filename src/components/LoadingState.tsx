@@ -4,7 +4,7 @@ interface LoadingStateProps {
   message?: string;
 }
 
-export const LoadingState = ({ message = "AI is working its magic..." }: LoadingStateProps) => {
+export const LoadingState = ({ message = "Einstein working..." }: LoadingStateProps) => {
   return (
     <div className="flex flex-col items-center justify-center py-12 space-y-4">
       <div className="relative">

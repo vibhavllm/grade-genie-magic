@@ -26,7 +26,7 @@ const Analytics = () => {
       setAnalytics(dummySubmissionAnalytics);
       setIsLoading(false);
       toast.success("Analytics generated!");
-    }, 2600);
+    }, 480);
   };
 
   return (

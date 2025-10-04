@@ -32,7 +32,7 @@ const Summaries = () => {
       setSummary({ ...dummyTopicSummary, topic });
       setIsLoading(false);
       toast.success("Summary generated!");
-    }, 2200);
+    }, 450);
   };
 
   return (
