@@ -50,9 +50,6 @@ const Landing = () => {
                 card: "shadow-lg border-0 bg-card",
               }
             }}
-            routing="path"
-            path="/sign-in"
-            signUpUrl="/sign-up"
           />
         </div>
       </div>
