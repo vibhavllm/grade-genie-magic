@@ -3,9 +3,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/clerk-react";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-react";
 import { DashboardLayout } from "./components/DashboardLayout";
 import Index from "./pages/Index";
+import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 import LessonPlans from "./pages/LessonPlans";
 import QuestionPapers from "./pages/QuestionPapers";
@@ -45,7 +46,9 @@ const App = () => (
             </DashboardLayout>
           </SignedIn>
           <SignedOut>
-            <RedirectToSignIn />
+            <Routes>
+              <Route path="*" element={<Landing />} />
+            </Routes>
           </SignedOut>
         </BrowserRouter>
       </TooltipProvider>
