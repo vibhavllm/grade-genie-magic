@@ -62,22 +62,6 @@ const Landing = () => {
               </div>
             ))}
           </div>
-
-          {/* Stats */}
-          <div className="mt-12 flex gap-8">
-            <div>
-              <div className="text-3xl font-bold text-primary">1,200+</div>
-              <div className="text-sm text-muted-foreground">Educators</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">50K+</div>
-              <div className="text-sm text-muted-foreground">Assessments</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">98%</div>
-              <div className="text-sm text-muted-foreground">Time Saved</div>
-            </div>
-          </div>
         </div>
       </div>
 
