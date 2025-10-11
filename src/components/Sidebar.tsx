@@ -27,14 +27,14 @@ const navigation = [
 
 export const Sidebar = () => {
   return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r bg-card/80 backdrop-blur-lg transition-transform">
+    <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r bg-card/80 backdrop-blur-lg">
       <div className="flex h-full flex-col">
         <div className="flex h-16 items-center gap-2 border-b px-6">
           <div className="gradient-primary rounded-lg p-2">
             <Sparkles className="h-5 w-5 text-primary-foreground" />
           </div>
-          <span className="text-lg font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-            Enrich & Validate
+          <span className="text-lg font-bold text-primary">
+            Enstine
           </span>
         </div>
 
@@ -60,12 +60,12 @@ export const Sidebar = () => {
         </nav>
 
         <div className="border-t p-4">
-          <div className="rounded-lg bg-secondary/50 p-4 text-sm">
-            <p className="font-semibold mb-1">Need Help?</p>
-            <p className="text-xs text-muted-foreground">
-              Press <kbd className="px-1.5 py-0.5 bg-card rounded border">⌘</kbd>
-              <kbd className="px-1.5 py-0.5 bg-card rounded border ml-1">K</kbd> for quick navigation
-            </p>
+          <div className="flex items-center gap-3 rounded-lg p-2 text-sm">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Vibhav" className="h-10 w-10 rounded-full" />
+            <div>
+              <p className="font-semibold">Vibhav</p>
+              <p className="text-xs text-muted-foreground">vibhav@gmail.com</p>
+            </div>
           </div>
         </div>
       </div>
