@@ -35,11 +35,9 @@ const Landing = () => {
         <div className="max-w-3xl">
           {/* Main Hero */}
           <div className="mb-12">
-            <h1 className="text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
               Empower learning through{" "}
-              <span className="bg-gradient-to-r from-primary via-accent to-primary-glow bg-clip-text text-transparent">
-                <FlipWords words={flipWords} />
-              </span>
+              <FlipWords words={flipWords} />
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               The intelligent examination suite that transforms how educators create assessments, 
