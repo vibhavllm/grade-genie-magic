@@ -30,38 +30,14 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left side - Clerk Sign In (40%) */}
-      <div className="w-[40%] flex items-center justify-center p-8 bg-gradient-to-br from-secondary via-background to-secondary/50">
-        <div className="w-full max-w-md">
-          <div className="mb-8 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="gradient-primary rounded-lg p-2">
-                <Sparkles className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <span className="text-2xl font-bold text-primary">Enstine</span>
-            </div>
-            <p className="text-muted-foreground">Sign in to continue to your dashboard</p>
-          </div>
-          
-          <SignIn 
-            appearance={{
-              elements: {
-                rootBox: "w-full",
-                card: "shadow-lg border-0 bg-card",
-              }
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Right side - Hero with FlipWords (60%) */}
+      {/* Left side - Hero with FlipWords (60%) */}
       <div className="w-[60%] flex flex-col justify-center p-12 bg-background">
         <div className="max-w-3xl">
           {/* Main Hero */}
           <div className="mb-12">
             <h1 className="text-6xl font-bold mb-6 leading-tight">
               Empower learning through{" "}
-              <span className="bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-accent to-primary-glow bg-clip-text text-transparent">
                 <FlipWords words={flipWords} />
               </span>
             </h1>
@@ -102,6 +78,30 @@ const Landing = () => {
               <div className="text-sm text-muted-foreground">Time Saved</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Right side - Clerk Sign In (40%) */}
+      <div className="w-[40%] flex items-center justify-center p-8 bg-gradient-to-br from-secondary via-background to-secondary/50">
+        <div className="w-full max-w-md">
+          <div className="mb-8 text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="gradient-primary rounded-lg p-2">
+                <Sparkles className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <span className="text-2xl font-bold text-primary">Enstine</span>
+            </div>
+            <p className="text-muted-foreground">Sign in to continue to your dashboard</p>
+          </div>
+          
+          <SignIn 
+            appearance={{
+              elements: {
+                rootBox: "w-full",
+                card: "shadow-lg border-0 bg-card",
+              }
+            }}
+          />
         </div>
       </div>
     </div>
