@@ -3,7 +3,7 @@ import { Sidebar } from "./Sidebar";
 import { CommandPalette } from "./CommandPalette";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { UserButton } from "@clerk/clerk-react";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -35,10 +35,14 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 Quick Search
                 <kbd className="ml-2 px-1.5 py-0.5 bg-secondary rounded text-xs">⌘K</kbd>
               </Button>
-              <Avatar>
-                <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Teacher" alt="Profile" />
-                <AvatarFallback>TC</AvatarFallback>
-              </Avatar>
+              <UserButton 
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    avatarBox: "h-10 w-10"
+                  }
+                }}
+              />
             </div>
           </div>
           <div className="p-6">
