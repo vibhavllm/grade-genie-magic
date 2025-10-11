@@ -7,7 +7,6 @@ import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from "@clerk/cle
 import { DashboardLayout } from "./components/DashboardLayout";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Auth from "./pages/Auth";
 import LessonPlans from "./pages/LessonPlans";
 import QuestionPapers from "./pages/QuestionPapers";
 import Assignments from "./pages/Assignments";
@@ -28,36 +27,26 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/auth" element={<Auth />} />
-            <Route
-              path="/*"
-              element={
-                <>
-                  <SignedIn>
-                    <DashboardLayout>
-                      <Routes>
-                        <Route path="/" element={<Index />} />
-                        <Route path="/lesson-plans" element={<LessonPlans />} />
-                        <Route path="/question-papers" element={<QuestionPapers />} />
-                        <Route path="/assignments" element={<Assignments />} />
-                        <Route path="/summaries" element={<Summaries />} />
-                        <Route path="/rubrics" element={<Rubrics />} />
-                        <Route path="/validation" element={<Validation />} />
-                        <Route path="/checks" element={<Checks />} />
-                        <Route path="/analytics" element={<Analytics />} />
-                        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                        <Route path="*" element={<NotFound />} />
-                      </Routes>
-                    </DashboardLayout>
-                  </SignedIn>
-                  <SignedOut>
-                    <RedirectToSignIn redirectUrl="/auth" />
-                  </SignedOut>
-                </>
-              }
-            />
-          </Routes>
+          <SignedIn>
+            <DashboardLayout>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/lesson-plans" element={<LessonPlans />} />
+                <Route path="/question-papers" element={<QuestionPapers />} />
+                <Route path="/assignments" element={<Assignments />} />
+                <Route path="/summaries" element={<Summaries />} />
+                <Route path="/rubrics" element={<Rubrics />} />
+                <Route path="/validation" element={<Validation />} />
+                <Route path="/checks" element={<Checks />} />
+                <Route path="/analytics" element={<Analytics />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </DashboardLayout>
+          </SignedIn>
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
