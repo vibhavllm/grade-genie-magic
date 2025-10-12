@@ -17,6 +17,7 @@ const navigation = [
   { name: "Dashboard", icon: Home, path: "/" },
   { name: "Lesson Plans", icon: BookOpen, path: "/lesson-plans" },
   { name: "Question Papers", icon: FileText, path: "/question-papers" },
+  { name: "Advanced QP Generator", icon: Sparkles, path: "/question-papers-advanced" },
   { name: "Assignments", icon: Target, path: "/assignments" },
   { name: "Summaries", icon: Lightbulb, path: "/summaries" },
   { name: "Rubrics", icon: CheckSquare, path: "/rubrics" },

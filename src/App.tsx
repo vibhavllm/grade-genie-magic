@@ -10,6 +10,7 @@ import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 import LessonPlans from "./pages/LessonPlans";
 import QuestionPapers from "./pages/QuestionPapers";
+import AdvancedQuestionPapers from "./pages/AdvancedQuestionPapers";
 import Assignments from "./pages/Assignments";
 import Summaries from "./pages/Summaries";
 import Rubrics from "./pages/Rubrics";
@@ -34,6 +35,7 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/lesson-plans" element={<LessonPlans />} />
                 <Route path="/question-papers" element={<QuestionPapers />} />
+                <Route path="/question-papers-advanced" element={<AdvancedQuestionPapers />} />
                 <Route path="/assignments" element={<Assignments />} />
                 <Route path="/summaries" element={<Summaries />} />
                 <Route path="/rubrics" element={<Rubrics />} />
