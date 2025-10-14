@@ -1,15 +1,56 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { CommandPalette } from "./CommandPalette";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
 import { UserButton } from "@clerk/clerk-react";
+import { useTelemetry } from "@/hooks/useTelemetry";
+import { telemetry } from "@/lib/telemetry";
 
 interface DashboardLayoutProps {
   children: ReactNode;
 }
 
 export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+  const { trackInteraction } = useTelemetry();
+
+  useEffect(() => {
+    // Track clicks globally
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const elementInfo = target.tagName + (target.id ? `#${target.id}` : '') + 
+                         (target.className ? `.${target.className.split(' ')[0]}` : '');
+      
+      trackInteraction({
+        type: 'click',
+        target: elementInfo,
+      });
+    };
+
+    // Track scrolling
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        trackInteraction({
+          type: 'scroll',
+          value: `${window.scrollY}px`,
+        });
+      }, 500);
+    };
+
+    if (telemetry.getConsent()) {
+      document.addEventListener('click', handleClick);
+      window.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [trackInteraction]);
+
   return (
     <>
       <CommandPalette />
