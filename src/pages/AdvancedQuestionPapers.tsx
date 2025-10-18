@@ -117,16 +117,14 @@ const AdvancedQuestionPapers = () => {
           <Icon className="h-4 w-4" />
           {label}
         </Label>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p className="text-sm">Upload in DOCX for better results as format would be preserved</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p className="text-sm">Upload in DOCX for better results as format would be preserved</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
       <div className="flex flex-col gap-2">
         <Input
