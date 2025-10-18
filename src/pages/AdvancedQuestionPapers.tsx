@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sparkles, Upload, Plus, X, FileText, Link as LinkIcon, Target } from "lucide-react";
+import { Sparkles, Upload, Plus, X, FileText, Link as LinkIcon, Target, Info } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
 import { LoadingState } from "@/components/LoadingState";
 
@@ -111,10 +112,22 @@ const AdvancedQuestionPapers = () => {
     icon?: typeof FileText;
   }) => (
     <div className="space-y-3">
-      <Label className="flex items-center gap-2">
-        <Icon className="h-4 w-4" />
-        {label}
-      </Label>
+      <div className="flex items-center gap-2">
+        <Label className="flex items-center gap-2">
+          <Icon className="h-4 w-4" />
+          {label}
+        </Label>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="text-sm">Upload in DOCX for better results as format would be preserved</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
       <div className="flex flex-col gap-2">
         <Input
           type="file"
